@@ -148,9 +148,47 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .intro-text {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 15px;
+            opacity: 0;
+        }
+
+        .intro-text.show {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* 城市選擇按鈕（開場畫面用） */
+        .intro-city-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--glass-bg-strong);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            cursor: pointer;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .intro-city-btn.show {
+            animation: btnReveal 0.6s ease-out forwards;
+        }
+
+        .intro-city-btn:hover {
+            background: var(--glass-bg);
+            transform: scale(1.05);
+        }
+
         /* 開始按鈕 */
         .start-btn {
-            margin-top: 40px;
+            margin-top: 25px;
             padding: 15px 40px;
             font-size: 1.2rem;
             font-weight: 700;
@@ -177,144 +215,6 @@
         @keyframes btnReveal {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .intro-text {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.8);
-            margin-top: 15px;
-            opacity: 0;
-        }
-
-        .intro-text.show {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        /* ========== 老虎機抽獎畫面 ========== */
-        .slot-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            padding: 20px;
-        }
-
-        .slot-screen.active {
-            display: flex;
-        }
-
-        .slot-screen.fade-out {
-            animation: fadeOutScreen 0.5s ease forwards;
-        }
-
-        .slot-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .slot-machine {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 350px;
-        }
-
-        .slot-row {
-            background: var(--glass-bg-strong);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 15px 20px;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .slot-row::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-        }
-
-        .slot-row.breakfast::before { background: linear-gradient(90deg, #fbbf24, #fb923c); }
-        .slot-row.lunch::before { background: linear-gradient(90deg, #4ade80, #22d3ee); }
-        .slot-row.dinner::before { background: linear-gradient(90deg, #a78bfa, #f472b6); }
-
-        .slot-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            min-width: 50px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .slot-window {
-            flex: 1;
-            height: 50px;
-            overflow: hidden;
-            position: relative;
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-        }
-
-        .slot-reel {
-            position: absolute;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.1s linear;
-        }
-
-        .slot-item {
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .slot-item-icon {
-            font-size: 1.5rem;
-        }
-
-        .slot-result-icon {
-            font-size: 2rem;
-            opacity: 0;
-            transform: scale(0);
-        }
-
-        .slot-result-icon.show {
-            animation: iconPop 0.4s ease forwards;
-        }
-
-        @keyframes iconPop {
-            0% { opacity: 0; transform: scale(0) rotate(-180deg); }
-            70% { transform: scale(1.2) rotate(10deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
-
-        .slot-status {
-            margin-top: 30px;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.8);
         }
 
         /* ========== 頂部狀態列 ========== */
@@ -373,23 +273,23 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 25px;
-            text-align: center;
+            padding: 20px 25px;
             box-shadow: 0 8px 32px var(--glass-shadow);
             border: 1px solid var(--glass-border);
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .weather-main {
+        .weather-left {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
         }
 
         .weather-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -399,22 +299,27 @@
         }
 
         .weather-temp {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
+        }
+
+        .weather-right {
+            text-align: right;
         }
 
         .weather-desc {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .weather-details {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            flex-direction: column;
+            gap: 2px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.75);
         }
 
         /* 三餐推薦區 */
@@ -432,6 +337,7 @@
             gap: 8px;
         }
 
+        /* ========== 餐點卡片（含老虎機） ========== */
         .meal-card {
             background: var(--glass-bg-strong);
             backdrop-filter: blur(20px);
@@ -492,6 +398,11 @@
             transform: scale(1.05);
         }
 
+        .refresh-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .refresh-btn.spinning .refresh-icon {
             animation: spin 0.5s linear;
         }
@@ -505,18 +416,63 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
         }
 
-        .food-icon {
-            font-size: 2.5rem;
+        /* 老虎機滾輪（嵌入餐點卡片） */
+        .slot-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .food-icon-slot {
+            width: 70px;
+            height: 70px;
             background: var(--glass-bg);
-            padding: 15px;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
+            overflow: hidden;
+            position: relative;
         }
 
-        .food-info {
+        .food-icon-reel {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .food-icon-item {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .food-info-slot {
             flex: 1;
+            height: 70px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .food-info-reel {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-info-item {
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             text-align: left;
         }
 
@@ -551,7 +507,7 @@
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            z-index: 200;
+            z-index: 1100;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -675,6 +631,17 @@
         }
 
         .hidden { display: none !important; }
+
+        /* 抽獎完成閃光效果 */
+        @keyframes slotWin {
+            0% { box-shadow: 0 4px 20px var(--glass-shadow); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+            100% { box-shadow: 0 4px 20px var(--glass-shadow); }
+        }
+
+        .meal-card.slot-win {
+            animation: slotWin 0.6s ease;
+        }
     </style>
 </head>
 
@@ -687,39 +654,12 @@
         <div class="weather-reveal" id="introWeatherIcon">🌤️</div>
         <div class="temp-reveal" id="introTemp">--°C</div>
         <div class="intro-text" id="introCity">正在查詢天氣...</div>
-        <button class="start-btn" id="startBtn" onclick="startSlotMachine()">開始抽餐點</button>
-    </div>
-
-    <!-- ========== 老虎機抽獎畫面 ========== -->
-    <div id="slotScreen" class="slot-screen">
-        <div class="slot-title">🎰 今天吃什麼？</div>
-        <div class="slot-machine">
-            <!-- 早餐 -->
-            <div class="slot-row breakfast">
-                <div class="slot-label">☀️ 早餐</div>
-                <div class="slot-window">
-                    <div class="slot-reel" id="breakfastReel"></div>
-                </div>
-                <div class="slot-result-icon" id="breakfastResultIcon"></div>
-            </div>
-            <!-- 午餐 -->
-            <div class="slot-row lunch">
-                <div class="slot-label">🌞 午餐</div>
-                <div class="slot-window">
-                    <div class="slot-reel" id="lunchReel"></div>
-                </div>
-                <div class="slot-result-icon" id="lunchResultIcon"></div>
-            </div>
-            <!-- 晚餐 -->
-            <div class="slot-row dinner">
-                <div class="slot-label">🌙 晚餐</div>
-                <div class="slot-window">
-                    <div class="slot-reel" id="dinnerReel"></div>
-                </div>
-                <div class="slot-result-icon" id="dinnerResultIcon"></div>
-            </div>
-        </div>
-        <div class="slot-status" id="slotStatus">準備中...</div>
+        <button class="intro-city-btn" id="introCityBtn" onclick="openMapModal()">
+            <span>📍</span>
+            <span id="introCityName">選擇城市</span>
+            <span>▼</span>
+        </button>
+        <button class="start-btn" id="startBtn" onclick="startApp()">🎰 開始抽餐點</button>
     </div>
 
     <!-- ========== 主畫面 ========== -->
@@ -735,71 +675,106 @@
 
         <div class="container" id="mainContent">
             <div class="weather-card fade-in">
-                <div class="weather-main">
+                <div class="weather-left">
                     <div class="weather-icon" id="weatherIcon">🌤️</div>
                     <div class="weather-temp" id="weatherTemp">--°</div>
                 </div>
-                <div class="weather-desc" id="weatherDesc">載入中...</div>
-                <div class="weather-details">
-                    <span>💧 降雨 <span id="rainProb">--%</span></span>
-                    <span>🌡️ <span id="tempRange">--° ~ --°</span></span>
+                <div class="weather-right">
+                    <div class="weather-desc" id="weatherDesc">載入中...</div>
+                    <div class="weather-details">
+                        <span>💧 降雨 <span id="rainProb">--%</span></span>
+                        <span>🌡️ <span id="tempRange">--° ~ --°</span></span>
+                    </div>
                 </div>
             </div>
 
             <div class="meals-section">
                 <div class="section-title">
-                    <span>🍴</span>
+                    <span>🎰</span>
                     <span>今日推薦</span>
                     <span class="date-pill" id="todayDate"></span>
                 </div>
 
+                <!-- 早餐卡片 -->
                 <div class="meal-card breakfast fade-in" id="breakfastCard">
                     <div class="meal-header">
                         <div class="meal-type"><span>☀️</span><span>早餐推薦</span></div>
-                        <button class="refresh-btn" onclick="refreshMeal('breakfast', this)">
-                            <span class="refresh-icon">🔄</span><span>換一個</span>
+                        <button class="refresh-btn" id="breakfastRefreshBtn" onclick="refreshMealWithSlot('breakfast')">
+                            <span class="refresh-icon">🎰</span><span>再抽一次</span>
                         </button>
                     </div>
                     <div class="meal-content">
-                        <div class="food-icon" id="breakfastIcon">🥐</div>
-                        <div class="food-info">
-                            <div class="food-category" id="breakfastCategory">--</div>
-                            <div class="food-name" id="breakfastFood">--</div>
-                            <div class="food-drink" id="breakfastDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                        <div class="slot-container">
+                            <div class="food-icon-slot">
+                                <div class="food-icon-reel" id="breakfastIconReel">
+                                    <div class="food-icon-item">🥐</div>
+                                </div>
+                            </div>
+                            <div class="food-info-slot">
+                                <div class="food-info-reel" id="breakfastInfoReel">
+                                    <div class="food-info-item">
+                                        <div class="food-category" id="breakfastCategory">--</div>
+                                        <div class="food-name" id="breakfastFood">--</div>
+                                        <div class="food-drink" id="breakfastDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 午餐卡片 -->
                 <div class="meal-card lunch fade-in" id="lunchCard">
                     <div class="meal-header">
                         <div class="meal-type"><span>🌞</span><span>午餐推薦</span></div>
-                        <button class="refresh-btn" onclick="refreshMeal('lunch', this)">
-                            <span class="refresh-icon">🔄</span><span>換一個</span>
+                        <button class="refresh-btn" id="lunchRefreshBtn" onclick="refreshMealWithSlot('lunch')">
+                            <span class="refresh-icon">🎰</span><span>再抽一次</span>
                         </button>
                     </div>
                     <div class="meal-content">
-                        <div class="food-icon" id="lunchIcon">🍚</div>
-                        <div class="food-info">
-                            <div class="food-category" id="lunchCategory">--</div>
-                            <div class="food-name" id="lunchFood">--</div>
-                            <div class="food-drink" id="lunchDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                        <div class="slot-container">
+                            <div class="food-icon-slot">
+                                <div class="food-icon-reel" id="lunchIconReel">
+                                    <div class="food-icon-item">🍚</div>
+                                </div>
+                            </div>
+                            <div class="food-info-slot">
+                                <div class="food-info-reel" id="lunchInfoReel">
+                                    <div class="food-info-item">
+                                        <div class="food-category" id="lunchCategory">--</div>
+                                        <div class="food-name" id="lunchFood">--</div>
+                                        <div class="food-drink" id="lunchDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 晚餐卡片 -->
                 <div class="meal-card dinner fade-in" id="dinnerCard">
                     <div class="meal-header">
                         <div class="meal-type"><span>🌙</span><span>晚餐推薦</span></div>
-                        <button class="refresh-btn" onclick="refreshMeal('dinner', this)">
-                            <span class="refresh-icon">🔄</span><span>換一個</span>
+                        <button class="refresh-btn" id="dinnerRefreshBtn" onclick="refreshMealWithSlot('dinner')">
+                            <span class="refresh-icon">🎰</span><span>再抽一次</span>
                         </button>
                     </div>
                     <div class="meal-content">
-                        <div class="food-icon" id="dinnerIcon">🍜</div>
-                        <div class="food-info">
-                            <div class="food-category" id="dinnerCategory">--</div>
-                            <div class="food-name" id="dinnerFood">--</div>
-                            <div class="food-drink" id="dinnerDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                        <div class="slot-container">
+                            <div class="food-icon-slot">
+                                <div class="food-icon-reel" id="dinnerIconReel">
+                                    <div class="food-icon-item">🍜</div>
+                                </div>
+                            </div>
+                            <div class="food-info-slot">
+                                <div class="food-info-reel" id="dinnerInfoReel">
+                                    <div class="food-info-item">
+                                        <div class="food-category" id="dinnerCategory">--</div>
+                                        <div class="food-name" id="dinnerFood">--</div>
+                                        <div class="food-drink" id="dinnerDrink"><span class="drink-icon"></span><span class="drink-text"></span></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -870,21 +845,25 @@
         var API_BASE_URL = "https://weather-gozz.zeabur.app";
         var currentCity = localStorage.getItem('selectedCity') || '高雄市';
         var weatherData = null;
+        var isInIntro = true;  // 追蹤是否在開場畫面
 
         // 隨機餐點池（用於老虎機滾動顯示）
         var foodPool = [
-            { icon: '🍜', name: '牛肉麵' },
-            { icon: '🍚', name: '滷肉飯' },
-            { icon: '🥟', name: '小籠包' },
-            { icon: '🍲', name: '火鍋' },
-            { icon: '🍗', name: '炸雞' },
-            { icon: '🥗', name: '沙拉' },
-            { icon: '🍱', name: '便當' },
-            { icon: '🥐', name: '可頌' },
-            { icon: '🍝', name: '義大利麵' },
-            { icon: '🍖', name: '燒肉' },
-            { icon: '🥣', name: '粥' },
-            { icon: '🥪', name: '三明治' }
+            { icon: '🍜', name: '牛肉麵', category: '麵食' },
+            { icon: '🍚', name: '滷肉飯', category: '飯類' },
+            { icon: '🥟', name: '小籠包', category: '點心' },
+            { icon: '🍲', name: '火鍋', category: '鍋物' },
+            { icon: '🍗', name: '炸雞', category: '炸物' },
+            { icon: '🥗', name: '沙拉', category: '輕食' },
+            { icon: '🍱', name: '便當', category: '便當' },
+            { icon: '🥐', name: '可頌', category: '烘焙' },
+            { icon: '🍝', name: '義大利麵', category: '西餐' },
+            { icon: '🍖', name: '燒肉', category: '燒烤' },
+            { icon: '🥣', name: '粥', category: '粥品' },
+            { icon: '🥪', name: '三明治', category: '輕食' },
+            { icon: '🍛', name: '咖哩飯', category: '異國料理' },
+            { icon: '🍣', name: '壽司', category: '日式料理' },
+            { icon: '🌮', name: '墨西哥捲', category: '異國料理' }
         ];
 
         function getWeatherIcon(weather) {
@@ -905,8 +884,15 @@
             document.getElementById('todayDate').textContent = month + "/" + date + " " + days[now.getDay()];
         }
 
+        function displayCityName(city) {
+            return city.replace('臺', '台');
+        }
+
         // ========== 開場動畫流程 ==========
         async function initApp() {
+            // 更新開場畫面的城市名稱
+            document.getElementById('introCityName').textContent = displayCityName(currentCity);
+
             try {
                 var response = await fetch(API_BASE_URL + "/api/weather/" + encodeURIComponent(currentCity));
                 var json = await response.json();
@@ -929,13 +915,17 @@
 
                     setTimeout(function() {
                         var cityEl = document.getElementById('introCity');
-                        cityEl.textContent = json.data.city.replace('臺', '台') + " · " + json.data.weather;
+                        cityEl.textContent = displayCityName(json.data.city) + " · " + json.data.weather;
                         cityEl.classList.add('show');
                     }, 2600);
 
                     setTimeout(function() {
+                        document.getElementById('introCityBtn').classList.add('show');
+                    }, 2900);
+
+                    setTimeout(function() {
                         document.getElementById('startBtn').classList.add('show');
-                    }, 3000);
+                    }, 3200);
                 }
             } catch (e) {
                 console.error(e);
@@ -944,68 +934,110 @@
             }
         }
 
-        // ========== 老虎機抽獎 ==========
-        function startSlotMachine() {
-            // 隱藏開場畫面
+        // ========== 進入主畫面並播放老虎機 ==========
+        function startApp() {
+            isInIntro = false;
             document.getElementById('introScreen').classList.add('fade-out');
 
             setTimeout(function() {
                 document.getElementById('introScreen').style.display = 'none';
-                document.getElementById('slotScreen').classList.add('active');
-                runSlotMachine();
+                document.getElementById('mainApp').classList.remove('hidden');
+                renderWeather(weatherData);
+                document.getElementById('currentCity').textContent = displayCityName(weatherData.city);
+                updateDate();
+
+                // 播放三餐老虎機動畫
+                runAllSlots();
             }, 500);
         }
 
-        function buildReel(reelId, finalFood) {
-            var reel = document.getElementById(reelId);
-            reel.textContent = '';
+        // ========== 老虎機動畫系統 ==========
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
 
-            // 建立滾動項目（20個隨機 + 1個最終結果）
+        function buildIconReel(reelEl, finalIcon) {
+            reelEl.innerHTML = '';
             var items = [];
-            for (var i = 0; i < 20; i++) {
+
+            // 15 個隨機 + 1 個結果
+            for (var i = 0; i < 15; i++) {
                 var randomFood = foodPool[Math.floor(Math.random() * foodPool.length)];
-                items.push(randomFood);
+                items.push(randomFood.icon);
             }
-            items.push(finalFood); // 最後一個是結果
+            items.push(finalIcon);
 
-            items.forEach(function(food) {
+            items.forEach(function(icon) {
                 var div = document.createElement('div');
-                div.className = 'slot-item';
-
-                var iconSpan = document.createElement('span');
-                iconSpan.className = 'slot-item-icon';
-                iconSpan.textContent = food.icon;
-
-                var nameSpan = document.createElement('span');
-                nameSpan.textContent = food.name;
-
-                div.appendChild(iconSpan);
-                div.appendChild(nameSpan);
-                reel.appendChild(div);
+                div.className = 'food-icon-item';
+                div.textContent = icon;
+                reelEl.appendChild(div);
             });
 
             return items.length;
         }
 
-        function animateReel(reelId, totalItems, duration, callback) {
-            var reel = document.getElementById(reelId);
-            var itemHeight = 50;
+        function buildInfoReel(reelEl, finalData) {
+            reelEl.innerHTML = '';
+            var items = [];
+
+            // 15 個隨機 + 1 個結果
+            for (var i = 0; i < 15; i++) {
+                var randomFood = foodPool[Math.floor(Math.random() * foodPool.length)];
+                items.push({
+                    category: randomFood.category,
+                    name: randomFood.name,
+                    drink: null
+                });
+            }
+            items.push(finalData);
+
+            items.forEach(function(item) {
+                var div = document.createElement('div');
+                div.className = 'food-info-item';
+
+                var catDiv = document.createElement('div');
+                catDiv.className = 'food-category';
+                catDiv.textContent = item.category;
+
+                var nameDiv = document.createElement('div');
+                nameDiv.className = 'food-name';
+                nameDiv.textContent = item.name;
+
+                var drinkDiv = document.createElement('div');
+                drinkDiv.className = 'food-drink';
+                if (item.drink) {
+                    var drinkIconSpan = document.createElement('span');
+                    drinkIconSpan.className = 'drink-icon';
+                    drinkIconSpan.textContent = item.drink.icon;
+                    var drinkTextSpan = document.createElement('span');
+                    drinkTextSpan.className = 'drink-text';
+                    drinkTextSpan.textContent = '搭配 ' + item.drink.name;
+                    drinkDiv.appendChild(drinkIconSpan);
+                    drinkDiv.appendChild(drinkTextSpan);
+                }
+
+                div.appendChild(catDiv);
+                div.appendChild(nameDiv);
+                div.appendChild(drinkDiv);
+                reelEl.appendChild(div);
+            });
+
+            return items.length;
+        }
+
+        function animateReel(reelEl, totalItems, itemHeight, duration, callback) {
             var finalPosition = -(totalItems - 1) * itemHeight;
             var startTime = null;
-            var startPosition = 0;
-
-            function easeOutCubic(t) {
-                return 1 - Math.pow(1 - t, 3);
-            }
 
             function animate(timestamp) {
                 if (!startTime) startTime = timestamp;
                 var elapsed = timestamp - startTime;
                 var progress = Math.min(elapsed / duration, 1);
                 var easedProgress = easeOutCubic(progress);
-                var currentPosition = startPosition + (finalPosition - startPosition) * easedProgress;
+                var currentPosition = finalPosition * easedProgress;
 
-                reel.style.transform = 'translateY(' + currentPosition + 'px)';
+                reelEl.style.transform = 'translateY(' + currentPosition + 'px)';
 
                 if (progress < 1) {
                     requestAnimationFrame(animate);
@@ -1017,61 +1049,89 @@
             requestAnimationFrame(animate);
         }
 
-        function runSlotMachine() {
-            var recommendations = weatherData.recommendations;
-            var statusEl = document.getElementById('slotStatus');
+        function runMealSlot(meal, recommendation, delay, callback) {
+            var prefix = meal.toLowerCase();
+            var iconReel = document.getElementById(prefix + 'IconReel');
+            var infoReel = document.getElementById(prefix + 'InfoReel');
+            var card = document.getElementById(prefix + 'Card');
 
-            // 建立每個滾輪
-            var breakfastFood = { icon: recommendations.breakfast.category.icon, name: recommendations.breakfast.food.name };
-            var lunchFood = { icon: recommendations.lunch.category.icon, name: recommendations.lunch.food.name };
-            var dinnerFood = { icon: recommendations.dinner.category.icon, name: recommendations.dinner.food.name };
+            var finalData = {
+                category: recommendation.category.name,
+                name: recommendation.food ? recommendation.food.name : '--',
+                drink: recommendation.drink
+            };
 
-            var breakfastItems = buildReel('breakfastReel', breakfastFood);
-            var lunchItems = buildReel('lunchReel', lunchFood);
-            var dinnerItems = buildReel('dinnerReel', dinnerFood);
-
-            statusEl.textContent = "抽獎中...";
-
-            // 依序停止滾輪
-            setTimeout(function() {
-                animateReel('breakfastReel', breakfastItems, 2000, function() {
-                    document.getElementById('breakfastResultIcon').textContent = breakfastFood.icon;
-                    document.getElementById('breakfastResultIcon').classList.add('show');
-                    statusEl.textContent = "早餐決定！";
-                });
-            }, 200);
+            var iconCount = buildIconReel(iconReel, recommendation.category.icon);
+            var infoCount = buildInfoReel(infoReel, finalData);
 
             setTimeout(function() {
-                animateReel('lunchReel', lunchItems, 2500, function() {
-                    document.getElementById('lunchResultIcon').textContent = lunchFood.icon;
-                    document.getElementById('lunchResultIcon').classList.add('show');
-                    statusEl.textContent = "午餐決定！";
+                // 同時滾動 icon 和 info
+                animateReel(iconReel, iconCount, 70, 1500 + delay * 300, function() {
+                    // icon 滾完的閃光效果
                 });
-            }, 700);
 
-            setTimeout(function() {
-                animateReel('dinnerReel', dinnerItems, 3000, function() {
-                    document.getElementById('dinnerResultIcon').textContent = dinnerFood.icon;
-                    document.getElementById('dinnerResultIcon').classList.add('show');
-                    statusEl.textContent = "今日三餐決定！";
+                animateReel(infoReel, infoCount, 70, 1800 + delay * 300, function() {
+                    // info 滾完後的完成效果
+                    card.classList.add('slot-win');
+                    setTimeout(function() {
+                        card.classList.remove('slot-win');
+                    }, 600);
 
-                    // 完成後進入主畫面
-                    setTimeout(showMainApp, 1500);
+                    if (callback) callback();
                 });
-            }, 1200);
+            }, delay * 400);
         }
 
-        function showMainApp() {
-            document.getElementById('slotScreen').classList.add('fade-out');
+        function runAllSlots() {
+            var recommendations = weatherData.recommendations;
 
-            setTimeout(function() {
-                document.getElementById('slotScreen').style.display = 'none';
-                document.getElementById('mainApp').classList.remove('hidden');
-                renderWeather(weatherData);
-                renderRecommendations(weatherData.recommendations);
-                document.getElementById('currentCity').textContent = weatherData.city.replace('臺', '台');
-                updateDate();
-            }, 500);
+            // 禁用所有刷新按鈕
+            setRefreshButtonsEnabled(false);
+
+            runMealSlot('breakfast', recommendations.breakfast, 0);
+            runMealSlot('lunch', recommendations.lunch, 1);
+            runMealSlot('dinner', recommendations.dinner, 2, function() {
+                // 全部完成後啟用刷新按鈕
+                setTimeout(function() {
+                    setRefreshButtonsEnabled(true);
+                }, 300);
+            });
+        }
+
+        function setRefreshButtonsEnabled(enabled) {
+            var btns = ['breakfastRefreshBtn', 'lunchRefreshBtn', 'dinnerRefreshBtn'];
+            btns.forEach(function(id) {
+                document.getElementById(id).disabled = !enabled;
+            });
+        }
+
+        // ========== 刷新單餐（帶老虎機動畫） ==========
+        async function refreshMealWithSlot(meal) {
+            var prefix = meal.toLowerCase();
+            var btn = document.getElementById(prefix + 'RefreshBtn');
+            var card = document.getElementById(prefix + 'Card');
+
+            btn.disabled = true;
+            btn.classList.add('spinning');
+
+            try {
+                var response = await fetch(API_BASE_URL + "/api/recommend/" + encodeURIComponent(currentCity) + "/" + meal);
+                var json = await response.json();
+
+                if (json.success) {
+                    runMealSlot(meal, json.data, 0, function() {
+                        btn.disabled = false;
+                        btn.classList.remove('spinning');
+                    });
+                } else {
+                    btn.disabled = false;
+                    btn.classList.remove('spinning');
+                }
+            } catch (e) {
+                console.error(e);
+                btn.disabled = false;
+                btn.classList.remove('spinning');
+            }
         }
 
         // ========== 主畫面功能 ==========
@@ -1081,51 +1141,6 @@
             document.getElementById('weatherDesc').textContent = data.weather;
             document.getElementById('rainProb').textContent = data.rainProbability + "%";
             document.getElementById('tempRange').textContent = data.temperature.min + "° ~ " + data.temperature.max + "°";
-        }
-
-        function renderMealRecommendation(meal, recommendation) {
-            if (!recommendation) return;
-            var prefix = meal.toLowerCase();
-
-            document.getElementById(prefix + "Icon").textContent = recommendation.category.icon;
-            document.getElementById(prefix + "Category").textContent = recommendation.category.name;
-            document.getElementById(prefix + "Food").textContent = recommendation.food ? recommendation.food.name : "--";
-
-            var drinkEl = document.getElementById(prefix + "Drink");
-            var drinkIcon = drinkEl.querySelector('.drink-icon');
-            var drinkText = drinkEl.querySelector('.drink-text');
-
-            if (recommendation.drink) {
-                drinkIcon.textContent = recommendation.drink.icon;
-                drinkText.textContent = "搭配 " + recommendation.drink.name;
-            } else {
-                drinkIcon.textContent = "";
-                drinkText.textContent = "";
-            }
-        }
-
-        function renderRecommendations(recommendations) {
-            renderMealRecommendation('breakfast', recommendations.breakfast);
-            renderMealRecommendation('lunch', recommendations.lunch);
-            renderMealRecommendation('dinner', recommendations.dinner);
-        }
-
-        async function refreshMeal(meal, btn) {
-            btn.classList.add('spinning');
-            try {
-                var response = await fetch(API_BASE_URL + "/api/recommend/" + encodeURIComponent(currentCity) + "/" + meal);
-                var json = await response.json();
-                if (json.success) {
-                    renderMealRecommendation(meal, json.data);
-                    var card = document.getElementById(meal + "Card");
-                    card.classList.remove('slide-up');
-                    void card.offsetWidth;
-                    card.classList.add('slide-up');
-                }
-            } catch (e) {
-                console.error(e);
-            }
-            setTimeout(function() { btn.classList.remove('spinning'); }, 500);
         }
 
         function openMapModal() {
@@ -1152,8 +1167,59 @@
             localStorage.setItem('selectedCity', city);
             closeMapModal();
 
-            // 重新載入（帶動畫）
-            location.reload();
+            if (isInIntro) {
+                // 在開場畫面：更新顯示並重新載入天氣
+                document.getElementById('introCityName').textContent = displayCityName(city);
+
+                // 重設動畫狀態
+                document.getElementById('introWeatherIcon').classList.remove('show');
+                document.getElementById('introTemp').classList.remove('show');
+                document.getElementById('introCity').classList.remove('show');
+                document.getElementById('startBtn').classList.remove('show');
+                document.getElementById('introCityBtn').classList.remove('show');
+
+                document.getElementById('introCity').textContent = '正在查詢天氣...';
+
+                // 重新載入天氣資料（不播放雲朵動畫）
+                try {
+                    var response = await fetch(API_BASE_URL + "/api/weather/" + encodeURIComponent(city));
+                    var json = await response.json();
+
+                    if (json.success) {
+                        weatherData = json.data;
+
+                        setTimeout(function() {
+                            document.getElementById('introWeatherIcon').textContent = getWeatherIcon(json.data.weather);
+                            document.getElementById('introWeatherIcon').classList.add('show');
+                        }, 200);
+
+                        setTimeout(function() {
+                            document.getElementById('introTemp').textContent = json.data.temperature.avg + "°C";
+                            document.getElementById('introTemp').classList.add('show');
+                        }, 400);
+
+                        setTimeout(function() {
+                            document.getElementById('introCity').textContent = displayCityName(json.data.city) + " · " + json.data.weather;
+                            document.getElementById('introCity').classList.add('show');
+                        }, 600);
+
+                        setTimeout(function() {
+                            document.getElementById('introCityBtn').classList.add('show');
+                        }, 800);
+
+                        setTimeout(function() {
+                            document.getElementById('startBtn').classList.add('show');
+                        }, 1000);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    document.getElementById('introCity').textContent = "載入失敗，請重試";
+                    document.getElementById('introCity').classList.add('show');
+                }
+            } else {
+                // 在主畫面：重新載入整個頁面
+                location.reload();
+            }
         }
 
         // 綁定城市按鈕
